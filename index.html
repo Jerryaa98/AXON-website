@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AXON: Supportive Token Revealing for Fast Diffusion Language Model Decoding</title>
-<meta name="description" content="AXON (AACL-IJCNLP 2026) is a training-free plug-in for diffusion language models. When parallel decoding stalls, it reveals anchors: confident masked tokens that uncertain positions attend to.">
+<meta name="description" content="AXON (AACL-IJCNLP 2026, Oral) is a training-free plug-in for diffusion language models. When parallel decoding stalls, it reveals anchors: confident masked tokens that uncertain positions attend to.">
 <meta property="og:title" content="AXON: Supportive Token Revealing for Fast Diffusion Language Model Decoding">
-<meta property="og:description" content="A training-free plug-in for diffusion LLM decoding. AACL-IJCNLP 2026.">
+<meta property="og:description" content="A training-free plug-in for diffusion LLM decoding. AACL-IJCNLP 2026 Oral.">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary">
 <meta name="theme-color" content="#0b0c10">
@@ -70,6 +70,9 @@
   .venue .logo { background: #fff; border-radius: 8px; padding: 7px 10px; box-shadow: 0 6px 24px rgba(0,0,0,.35); }
   .venue .logo img { height: 34px; width: auto; }
   .venue b { color: var(--violet); font-weight: 500; }
+  .venue .oral { display: inline-flex; align-items: center; gap: 7px; padding: 6px 13px 6px 11px; border-radius: 999px; background: var(--violet); color: #140f26; font-weight: 600; letter-spacing: .12em; text-decoration: none; box-shadow: 0 0 0 4px rgba(179,157,255,.14), 0 6px 22px rgba(125,92,242,.35); transition: transform .2s, background .2s; }
+  .venue .oral:hover { background: #c5b4ff; transform: translateY(-1px); }
+  .venue .oral svg { width: 12px; height: 12px; fill: currentColor; }
   h1 { margin: 0; font-weight: 500; }
   h1 .wm { display: block; font-family: var(--display); font-weight: 600; font-size: clamp(64px, 11vw, 148px); line-height: .9; letter-spacing: .02em; font-variation-settings: "SOFT" 30, "opsz" 144; }
   h1 .wm svg { width: .2em; height: .2em; fill: var(--violet); vertical-align: .62em; margin-left: .06em; filter: drop-shadow(0 0 14px rgba(179,157,255,.7)); }
@@ -99,6 +102,7 @@
   /* ---------- sections */
   section.block { position: relative; padding-block: 88px 80px; background: var(--bg); }
   section.block.alt { background: var(--bg2); }
+  section.block.flush { padding-top: 0; }   /* continues the section above on the same background */
   .inner { max-width: 1180px; margin: 0 auto; padding-inline: 24px; }
   @media (max-width: 720px) { section.block { padding-block: 60px 52px; } .inner { padding-inline: 16px; } }
   .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--violet); margin: 0 0 10px; }
@@ -185,6 +189,35 @@
   .gif .frame img { width: 100%; height: 100%; object-fit: contain; object-position: top center; }
   .democtl { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 16px; }
 
+  /* ---------- talk: an on-brand title card that swaps in the YouTube player on click */
+  .talk { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; aspect-ratio: 16 / 9; padding: 4.6%; container-type: inline-size;
+    border: 1px solid rgba(179,157,255,.4); border-radius: 14px; color: var(--ink); text-decoration: none;
+    background: radial-gradient(55% 75% at 84% 50%, rgba(179,157,255,.24), transparent 62%), radial-gradient(45% 60% at 0% 0%, rgba(245,163,90,.08), transparent 60%), linear-gradient(160deg, #17141f, #0c0d12 70%);
+    box-shadow: 0 0 0 1px rgba(179,157,255,.12), 0 28px 70px rgba(0,0,0,.45); transition: border-color .25s; }
+  .talk::before { content: ""; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1.2px); background-size: 22px 22px; -webkit-mask-image: linear-gradient(100deg, transparent 30%, #000 75%); mask-image: linear-gradient(100deg, transparent 30%, #000 75%); }
+  a.talk:hover { border-color: var(--violet); }
+  .talk .tk-kick { font-family: var(--mono); font-size: max(10px, 1.45cqi); letter-spacing: .14em; text-transform: uppercase; color: var(--violet); }
+  .talk .tk-ttl { margin-top: 1.8cqi; max-width: 58cqi; font-family: var(--display); font-weight: 500; font-size: 4.4cqi; line-height: 1.06; letter-spacing: -0.015em; text-wrap: balance; font-variation-settings: "SOFT" 60, "opsz" 72; }
+  .talk .tk-ttl em { font-style: italic; font-weight: 400; color: var(--violet); }
+  .talk .tk-seq { display: flex; flex-wrap: wrap; gap: .8cqi; margin-top: auto; }
+  .talk .tk-seq i { font-style: normal; font-family: var(--mono); font-size: 1.55cqi; padding: .55cqi 1.1cqi; border-radius: .7cqi; border: 1px solid #3a3f4a; background: rgba(26,29,37,.85); color: var(--ink2); }
+  .talk .tk-seq i.m { color: var(--soft); border-style: dashed; }
+  .talk .tk-seq i.a { color: var(--ink); border-color: var(--violet); background: rgba(179,157,255,.18); box-shadow: 0 0 1.6cqi rgba(179,157,255,.35); }
+  .talk .tk-seq i.a::before { content: "★ "; color: var(--violet); }
+  .talk .tk-meta { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 2.2cqi; font-family: var(--mono); font-size: max(10px, 1.35cqi); color: var(--muted); }
+  .talk .tk-meta b { color: var(--ink); font-weight: 500; padding: .35cqi 1cqi; border-radius: 999px; border: 1px solid var(--line); background: rgba(19,21,27,.85); font-variant-numeric: tabular-nums; }
+  .talk .tk-play { position: absolute; right: 11cqi; top: 50%; width: 15cqi; height: 15cqi; transform: translateY(-50%); display: grid; place-items: center; border-radius: 50%; background: var(--violet); box-shadow: 0 0 0 1.4cqi rgba(179,157,255,.16), 0 0 6cqi rgba(179,157,255,.45); transition: transform .25s, background .25s; }
+  .talk .tk-play svg { width: 40%; height: 40%; margin-left: 8%; fill: #140f26; }
+  a.talk:hover .tk-play, a.talk:focus-visible .tk-play { transform: translateY(-50%) scale(1.07); background: #c5b4ff; }
+  .talk.on { padding: 0; background: #000; }
+  .talk.on::before { display: none; }
+  .talk iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  @container (max-width: 560px) {
+    .talk .tk-seq { display: none; }
+    .talk .tk-ttl { font-size: 5.4cqi; max-width: 62cqi; margin-bottom: auto; }
+    .talk .tk-play { right: 8cqi; width: 19cqi; height: 19cqi; }
+  }
+
   /* ---------- footer */
   footer { background: #07080b; border-top: 1px solid var(--line); padding-block: 56px 44px; }
   footer .inner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; }
@@ -202,7 +235,7 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .js .reveal { opacity: 1; transform: none; transition: none; }
-    .lane .fill, .tile::after, .btn { transition: none; }
+    .lane .fill, .tile::after, .btn, .talk, .talk .tk-play, .venue .oral { transition: none; }
   }
 </style>
 </head>
@@ -213,6 +246,7 @@
   <a class="brand" href="#top" aria-label="AXON, back to top"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5l3.3 7.2 7.8.9-5.8 5.3 1.6 7.7L16 21.7l-6.9 3.9 1.6-7.7-5.8-5.3 7.8-.9z"/></svg>AXON</a>
   <ul>
     <li><a href="#method">Method</a></li>
+    <li><a href="#talk">Talk</a></li>
     <li><a href="#highlights">Highlights</a></li>
     <li><a href="#demo">Demo</a></li>
   </ul>
@@ -226,7 +260,7 @@
   <canvas id="net" aria-hidden="true"></canvas>
   <div class="hud" id="hud" data-state="mask" aria-hidden="true"><span class="k">denoising step</span><b id="hud-step">000</b><span class="chip" id="hud-chip">all masked</span></div>
   <div class="hero-inner">
-    <div class="venue"><span class="logo"><img src="assets/logo-aacl-2026.png" alt="AACL-IJCNLP 2026, Hengqin, China" width="1200" height="291"></span><span>Accepted at <b>AACL-IJCNLP 2026</b></span></div>
+    <div class="venue"><span class="logo"><img src="assets/logo-aacl-2026.png" alt="AACL-IJCNLP 2026, Hengqin, China" width="1200" height="291"></span><span>Accepted at <b>AACL-IJCNLP 2026</b></span><a class="oral" href="#talk"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5l3.3 7.2 7.8.9-5.8 5.3 1.6 7.7L16 21.7l-6.9 3.9 1.6-7.7-5.8-5.3 7.8-.9z"/></svg>Oral presentation</a></div>
     <h1>
       <span class="wm">AXON<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4.5l3.3 7.2 7.8.9-5.8 5.3 1.6 7.7L16 21.7l-6.9 3.9 1.6-7.7-5.8-5.3 7.8-.9z"/></svg></span>
       <span class="ttl">Supportive Token Revealing for <em>Fast</em> Diffusion Language Model Decoding</span>
@@ -237,6 +271,8 @@
     <div class="actions">
       <a class="btn primary" href="https://arxiv.org/abs/2606.04236" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>Paper</a>
       <a class="btn" href="https://github.com/Jerryaa98/AXON" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>Code</a>
+      <a class="btn" href="#talk"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z"/></svg>Talk</a>
+      <a class="btn" href="assets/AXON_AACL_IJCNLP_2026Poster.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M10 10v9"/></svg>Poster</a>
     </div>
   </div>
 </header>
@@ -251,6 +287,23 @@
       <a class="plate" href="assets/fig-pipeline.png" data-zoom><img src="assets/fig-pipeline.png" width="2200" height="1122" loading="lazy" alt="Pipeline: a partially noised sequence 'The [MASK] Tower [MASK] [MASK] [MASK] .' goes to a parallel base decoder that proposes tokens. AXON's gate checks whether anchors are required: with enough support the base proposal 'is in' is kept; otherwise anchor selection picks 'Paris'. The next state reveals the selected tokens. Panels below detail the gate, anchor selection by a utility matrix and greedy coverage, and anchor injection lowering uncertainty over denoising steps."><span class="zh">Click to enlarge</span></a>
       <figcaption><b>Fig. 1.</b> Gate → select anchors → reveal supportive context.</figcaption>
     </figure>
+  </div>
+</section>
+
+<section class="block flush" id="talk">
+  <div class="inner">
+    <p class="kicker reveal">Oral presentation · AACL-IJCNLP 2026</p>
+    <h2 class="title reveal">The whole story in <em>nine</em> minutes.</h2>
+    <p class="sub reveal">AXON was selected for an <b>oral presentation</b> at AACL-IJCNLP 2026. Watch the full talk below.</p>
+    <div class="reveal">
+      <a class="talk" id="talk-play" href="https://www.youtube.com/watch?v=68ANOA0brAU" data-yt="68ANOA0brAU" target="_blank" rel="noopener" aria-label="Play the AXON oral presentation (8 minutes 41 seconds, on YouTube)">
+        <span class="tk-kick">AXON · Oral · AACL-IJCNLP 2026</span>
+        <span class="tk-ttl">Supportive Token Revealing for <em>Fast</em> Diffusion Language Model Decoding</span>
+        <span class="tk-seq" aria-hidden="true"><i>The</i><i class="m">[MASK]</i><i>Tower</i><i class="m">[MASK]</i><i class="m">[MASK]</i><i class="a">Paris</i><i>.</i></span>
+        <span class="tk-meta" aria-hidden="true"><span>Plays from YouTube</span><b>8:41</b></span>
+        <span class="tk-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12.5-7.5z"/></svg></span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -311,7 +364,7 @@
   <div class="inner">
     <div>
       <h2>Supportive Token Revealing for Fast Diffusion Language Model Decoding</h2>
-      <p>AXON · AACL-IJCNLP 2026 · <a href="mailto:jerryabuayob@gmail.com">jerryabuayob@gmail.com</a></p>
+      <p>AXON · AACL-IJCNLP 2026 (Oral) · <a href="mailto:jerryabuayob@gmail.com">jerryabuayob@gmail.com</a></p>
     </div>
     <div class="actions" style="margin-top:0">
       <a class="btn primary" href="https://arxiv.org/abs/2606.04236" target="_blank" rel="noopener">Paper</a>
@@ -671,6 +724,27 @@
   const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting) && !started) { started = true; io.disconnect(); load(); } }, { rootMargin: '300px' });
   io.observe(document.getElementById('demo'));
   btn.addEventListener('click', () => { if (!started) { started = true; io.disconnect(); load(); } else start(); });
+})();
+
+/* ================================================================== talk: load the YouTube player only on click */
+(function () {
+  const card = document.getElementById('talk-play');
+  if (!card) return;
+  card.addEventListener('click', e => {
+    if (e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;   // let "open in new tab" through
+    e.preventDefault();
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + card.dataset.yt + '?autoplay=1&rel=0&playsinline=1';
+    f.title = 'AXON: oral presentation at AACL-IJCNLP 2026';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen';
+    f.allowFullscreen = true;
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    const box = document.createElement('div');
+    box.className = 'talk on';
+    box.appendChild(f);
+    card.replaceWith(box);
+    f.focus();
+  });
 })();
 
 /* ================================================================== figure lightbox, nav highlight */
